@@ -12,7 +12,6 @@ import AVFoundation
 class ViewController: UIViewController {
     
     var player:AVAudioPlayer?
-    var fileName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,46 +19,13 @@ class ViewController: UIViewController {
 
 
     @IBAction func keyPressed(_ sender: UIButton) {
-        fileName = "C"
-        playSound()
+        var fileName = sender.accessibilityLabel
+        playSound(a:fileName)
     }
     
     
-    @IBAction func DButton(_ sender: Any) {
-        fileName = "D"
-        playSound()
-    }
-    
-    @IBAction func EButton(_ sender: Any) {
-        fileName = "E"
-        playSound()
-    }
-    
-    @IBAction func FButton(_ sender: Any) {
-        fileName = "F"
-        playSound()
-    }
-    
-    @IBAction func GButton(_ sender: Any) {
-        fileName = "G"
-        playSound()
-    }
-    
-    
-    @IBAction func AButton(_ sender: Any) {
-        fileName = "A"
-        playSound()
-    }
-    
-    
-    @IBAction func BButton(_ sender: Any) {
-        fileName = "B"
-        playSound()
-    }
-    
-    
-    func playSound(){
-        guard let url = Bundle.main.url(forResource: fileName , withExtension: "wav") else {return}
+    func playSound(a:String?){
+        guard let url = Bundle.main.url(forResource: a , withExtension: "wav") else {return}
         
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
